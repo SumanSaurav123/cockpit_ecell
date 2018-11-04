@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
+// use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
 use App\user;
 
-class Task extends Moloquent
+class Task extends Model
 {
     //
-    protected $connection = 'mongodb';
+    // protected $connection = 'mongodb';
     
-    protected $collection = 'task';
+    // protected $collection = 'task';
 
 }

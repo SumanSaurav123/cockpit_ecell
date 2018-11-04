@@ -281,6 +281,7 @@
             dataType:'json',
             success:function(data)
             {
+                console.log(data);
                 if(data.hasOwnProperty("card_data")){
                         $(".noti").html(data.card_data);
                         $(".notify").html(data.card_count); 
@@ -294,7 +295,7 @@
                     else
                     {
                         $(".notify").html(data.card_count); 
-                         $(".read").empty();
+                         $(".read").append("suman");
                         $(".noti").html(data.no_data);
                     }
             }

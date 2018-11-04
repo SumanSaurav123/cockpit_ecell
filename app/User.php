@@ -3,17 +3,18 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
+// use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
-class User extends Moloquent implements Authenticatable
+class User extends Model implements Authenticatable
 {
     use AuthenticableTrait;
 
-    protected $connection = 'mongodb';
+    // protected $connection = 'mongodb';
     
-    protected $collection = 'users';
+    // protected $collection = 'users';
 
     protected $primaryKey = '_id';
     use Notifiable;
@@ -54,7 +55,7 @@ class User extends Moloquent implements Authenticatable
 
     public function is_admin()
     {
-        if($this->roles->role_name == "Administrator")
+        if($this->roles->role_name == "CEO")
             return true;
         else
             return false;

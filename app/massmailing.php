@@ -3,9 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
+// use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
 
-class massmailing  extends Moloquent
+class massmailing  extends Model
 {
     //
 }

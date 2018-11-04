@@ -246,7 +246,7 @@ class MemberController extends Controller
               return Redirect::to('/Grievances')->withErrors($validator);
 
         $tostore = new Grievances;
-        $tostore->user_id = Auth::user()->id;
+        $tostore->user_id = Auth::user()->_id;
         $tostore->user_name = Auth::user()->name;
         $tostore->msg = $request->input('details');
         $tostore->save();

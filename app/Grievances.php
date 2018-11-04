@@ -3,17 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
+// use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
 use Illuminate\Notifications\Notifiable;
 
-class Grievances  extends Moloquent
+class Grievances  extends Model
 {
     //
-    protected $connection = 'mongodb';
+    // protected $connection = 'mongodb';
     
-    protected $collection = 'Grievances';
+    // protected $collection = 'Grievances';
 
-    protected $primaryKey = '_id';
+    protected $primaryKey = 'id';
 
 
 }

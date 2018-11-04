@@ -23,12 +23,13 @@ class AdminController extends Controller
     public function ShowDashboard()
     {
         $grievances = Grievances::all();
-        $meetings = Meeting::orderBy('created_at', 'DESC')->get();
+        $meetings = Meeting::orderBy('created_at', 'DESC')->limit(5)->get();
         if(Auth::user())
         {
-            $tasks = Task::where('alotname',Auth::user()->name)->orderBy('created_at','desc')->get();
+            $tasks = Task::where('alotname',Auth::user()->name)->orderBy('created_at','desc')->limit(5)->get();
+            $taskCount = Task::where('alotname',Auth::user()->name)->get(); 
             $teamcount = User::where('dep_id',Auth::user()->dep_id)->orderBy('created_at','desc')->get();
-            return view('Cockpit.inc.DashboardPage')->with('grievances',$grievances)->with('meetings',$meetings)->with('teamcount',$teamcount)->with('tasks',$tasks);
+            return view('Cockpit.inc.DashboardPage')->with('grievances',$grievances)->with('meetings',$meetings)->with('teamcount',$teamcount)->with('tasks',$tasks)->with('taskCount',$taskCount);
         }
         return view('Cockpit.inc.DashboardPage')->with('grievances',$grievances)->with('meetings',$meetings);
 
@@ -103,6 +104,7 @@ class AdminController extends Controller
                             $user->phone_number=(int)$request->input('phone');
                             $user->roll_no=(int)$request->input('rollno');
                             $user->year=(int)$request->input('year');
+                            $user->user_id = 0;
                             $user->cover_image=$fileNameToStore;
                             $user->rating=(int)$request->input('rating');
                             $user->save();
@@ -143,14 +145,14 @@ class AdminController extends Controller
                 {  
                      // Storing data into database
                     $mem = new Meeting;
-                    $mem->name=$request->input('name');
+                    $mem->name=(string)$request->input('name');
                     $mem->dep_id=(int)$request->input('department');
                     $mem->time=$request->input('time');
                     $mem->date=$request->input('date');
                     $mem->venue=$request->input('venue');
                     $mem->details=$request->input('details');
                     $mem->creator=Auth::user()->name;
-                    $mem->creator_id=Auth::user()->id;
+                    $mem->creator_id=Auth::user()->_id;
                     $mem->creator_image=Auth::user()->cover_image;
                     $mem->save();
 
@@ -158,7 +160,7 @@ class AdminController extends Controller
                     $not->creator=Auth::user()->name;
                     $not->status=0;
                     $not->name=$request->input('name');
-                    $not->meeting_id=$mem->id;
+                    $not->meeting_id=$mem->_id;
                     $not->save();
 
                    return Redirect::to('/AdminCreateMeeting')->with('success','Succesfully Created');

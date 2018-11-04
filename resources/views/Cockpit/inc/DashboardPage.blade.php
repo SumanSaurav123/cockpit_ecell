@@ -136,9 +136,9 @@
                         <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
                           <i class="mdi mdi-target text-primary mr-0 mr-sm-4 icon-lg"></i>
                           <div class="wrapper text-center text-sm-left">
-                            <p class="card-text mb-0">Task Pending</p>
+                            <p class="card-text mb-0">Task Alloted</p>
                             <div class="fluid-container">
-                              <h3 class="card-title mb-0">10x</h3>
+                              <h3 class="card-title mb-0">{{count($taskCount)}}</h3>
                             </div>
                           </div>
                         </div>
@@ -161,10 +161,14 @@
 									<div class="list-wrapper">
                     <!--if needed to show crossed task add this to every new task checked="" -->
 										<ul class="d-flex flex-column-reverse todo-list todo-list-custom">
+                    <?php
+                      $count=1;
+                    ?>
                     @if(count($tasks)>0)
                     @foreach($tasks as $task)
 											<li>
 												<div class="form-check form-check-flat">
+                        <h6><?php echo $count ; $count++; ?> {{$task->creator}}</h6>
 													<label class="form-check-label">
 														<input class="checkbox" type="checkbox" />
 														{{$task->description}}
@@ -177,7 +181,6 @@
                     @endif  
                       
                     </ul><br><br>
-                    <div class="btn btn-block btn-primary"><a style="color: white;" href="./pages/apps/todo.html">Add New</a> </div>
 									</div>
 								</div>
 							</div>

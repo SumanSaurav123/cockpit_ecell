@@ -62,6 +62,7 @@
                             @endif
                         </div>
                         </div>
+                        </div>      
                                 <!--second tab-->
                                 <div class="tab-pane" id="profile" role="tabpanel">
                                     <div class="card-body">

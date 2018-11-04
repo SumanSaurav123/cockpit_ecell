@@ -3,15 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
+// use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
 use App\Meeting;
 
-class Notification extends Moloquent
+class Notification extends Model
 {
     //
-    protected $connection = 'mongodb';
+    // protected $connection = 'mongodb';
     
-    protected $collection = 'notifications';
+    // protected $collection = 'notifications';
 
     protected $primaryKey = '_id';
 
